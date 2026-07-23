@@ -4,12 +4,20 @@ import Layout from './components/Layout'
 import { ThemeProvider } from './context/Theme-provider'
 import WeatherDashboard from './pages/WeatherDashboard'
 import CityPage from './pages/CityPage'
+import {QueryClientProvider,QueryClient} from "@tanstack/react-query"
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+
+
+
+
+const queryClient = new QueryClient();
 
 function App() {
-
+  
   return (
-    <div>
-  <BrowserRouter>
+  
+  <QueryClientProvider client={queryClient}>
+   <BrowserRouter>
     <ThemeProvider>
       <Layout>
        <Routes>
@@ -18,8 +26,10 @@ function App() {
        </Routes>
       </Layout>
     </ThemeProvider>
-  </BrowserRouter>
-    </div>
+   </BrowserRouter>
+  <ReactQueryDevtools initialIsOpen={false} />
+ </QueryClientProvider>
+  
     
   )
 }
