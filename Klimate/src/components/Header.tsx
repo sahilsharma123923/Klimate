@@ -15,7 +15,7 @@ const Header = () => {
       className="h-14"
       />
       </Link>
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         {/* citySearch */}
        <div onClick={()=>setTheme(isDark?"light":"dark")}
         className={`flex items-center rotate-0  cursor-pointer duration-500 transition-transform ${isDark?"rotate-180":"rotate-0"}`}>

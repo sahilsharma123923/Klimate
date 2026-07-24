@@ -47,15 +47,15 @@ class WeatherAPI{
    }
 
    // reverseGeocode
-   async reverseGeoCode({lat,lon}:coordinates):Promise<GeocodingResponse[]>{
-      const url=this.createUrl(`${API_CONFIG.BASE_URL}/reverse`,{
-         lat:lat.toString(),
-         lon:lon.toString(),
-         limit:1
-      });
+   async reverseGeoCode({ lat, lon }: coordinates): Promise<GeocodingResponse[]> {
+  const url = this.createUrl(`${API_CONFIG.GEO}/reverse`, {
+    lat: lat.toString(),
+    lon: lon.toString(),
+    limit: 1,
+  });
 
-      return this.fetchData<GeocodingResponse[]>(url);
-   } 
+  return this.fetchData<GeocodingResponse[]>(url);
+} 
 }
 
 export const weatherAPI=new WeatherAPI();
