@@ -5,6 +5,9 @@ import { UseGeolocation } from "@/hooks/UseGeolocation"
 import { useForecastQuery, useReverseGeocodeQuery, useWeatherQuery } from "@/hooks/useWeather";
 import { AlertTriangle, MapPin, RefreshCw } from "lucide-react"
 import CurrentWeather from "@/components/CurrentWeather";
+import HourlyTemperature from "@/components/HourlyTemperature";
+import WeatherDetails from "@/components/WeatherDetails";
+import WeatherForecast from "@/components/WeatherForecast";
 
 const WeatherDashboard = () => {
   const{
@@ -98,14 +101,19 @@ const WeatherDashboard = () => {
           <RefreshCw className={`w-4 h-4 ${weatherQuery.isFetching ? "animate-spin":""}`}/></Button>
         </div>
 
-       <div>
-         <div>
+       <div className="grid gap-6">
+         <div className="flex flex-col lg:flex-row gap-5">
             <CurrentWeather 
             data={weatherQuery.data}
             locationName={locationName}/>
+
+            <HourlyTemperature data={forecastQuery.data}/>
           
-         </div>
-         <div>
+          </div>
+         <div className="grid gap-6 md:grid-cols-2 items-start"> 
+          <WeatherDetails data={weatherQuery.data}/>
+
+          <WeatherForecast data={forecastQuery.data}/>
 
          </div>
        </div>
