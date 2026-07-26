@@ -117,9 +117,6 @@ const WeatherDashboard = () => {
 
          </div>
        </div>
-       
-
-
     </div>
   )
 }
