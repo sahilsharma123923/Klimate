@@ -15,7 +15,7 @@ const Header = () => {
       className="h-14"
       />
       </Link>
-      <div className="flex gap-2">
+      <div className="flex gap-4">
         {/* citySearch */}
         <CitySearch/>
        <div onClick={()=>setTheme(isDark?"light":"dark")}
