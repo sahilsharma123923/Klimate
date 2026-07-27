@@ -1,17 +1,19 @@
 import { CommandDialog, CommandEmpty, CommandGroup, CommandItem, CommandList ,CommandInput, CommandSeparator} from "./ui/command";
 import { useState } from "react";
 import { Button } from "./ui/button";
-import { Clock, Loader, Search, XCircle } from "lucide-react";
+import { Clock, Loader, Search, Star, XCircle } from "lucide-react";
 import { useLocationSearch } from "@/hooks/useWeather";
 import { useNavigate } from "react-router-dom";
 import { useSearchHistory } from "@/hooks/UseSearchHistory";
 import { format } from "date-fns";
+import { useFavourite } from "@/hooks/UseFavourite";
 
 const CitySearch = () => {
 
     const [open, setOpen] = useState(false);
     const [query, setQuery] = useState("");
     const navigate = useNavigate();
+    const{favorites}=useFavourite();
 
     const { data: locations, isLoading } = useLocationSearch(query);
     const { history, clearHistory, addToHistory } = useSearchHistory();
@@ -51,6 +53,30 @@ const CitySearch = () => {
         />
         <CommandList>
             {query.length > 2 && !isLoading && (<CommandEmpty>No cities found.</CommandEmpty>)}
+              
+           { favorites.length > 0 && (
+            <CommandGroup heading="Favorites">
+              {
+                favorites.map((location) => {
+                 return (
+                 <CommandItem
+                  key={location.id}
+                  value={`${location.lat}|${location.lon}|${location.name}|${location.country}`}
+                  onSelect={handleSelect}>
+                    <Star className="mr-2 h-4 w-4 text-yellow-400"/>
+                    <span>{location.name}</span>
+                    {location.state && (
+                      <span className="text-sm text-muted-foreground">, {location.state}</span>
+                    )}
+                    <span className="text-sm text-muted-foreground">
+                       , {location.country}
+                    </span>
+                    </CommandItem>
+                    )
+                })
+              }
+             </CommandGroup>
+             )}
 
            { history.length > 0 && (
              <>

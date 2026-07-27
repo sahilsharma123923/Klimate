@@ -6,6 +6,7 @@ import WeatherDashboard from './pages/WeatherDashboard'
 import CityPage from './pages/CityPage'
 import {QueryClientProvider,QueryClient} from "@tanstack/react-query"
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Toaster } from 'sonner'
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path='/city/:cityname' element={<CityPage/>}/>
        </Routes>
       </Layout>
+      <Toaster richColors/>
     </ThemeProvider>
    </BrowserRouter>
   <ReactQueryDevtools initialIsOpen={false} />

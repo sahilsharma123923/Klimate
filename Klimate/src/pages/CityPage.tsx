@@ -7,6 +7,7 @@ import CurrentWeather from "@/components/CurrentWeather";
 import HourlyTemperature from "@/components/HourlyTemperature";
 import WeatherDetails from "@/components/WeatherDetails";
 import WeatherForecast from "@/components/WeatherForecast";
+import FavoriteButton from "@/components/favoriteButton";
 
 const CityPage = () => {
 const[searchParams]=useSearchParams();
@@ -39,7 +40,13 @@ if(weatherQuery.error || forecastQuery.error){
      <div className="space-y-4">
       {/* Favourite City */}
       <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold tracking-tight">{params.cityname}, {weatherQuery.data.sys.country}</h1>
+        <h1 className="text-3xl font-bold tracking-tight">{params.cityname}, {weatherQuery.data.sys.country}
+
+        </h1>
+        <div>
+          <FavoriteButton data={{...weatherQuery.data , name:params.cityname}}/>
+          
+        </div>
 
         </div>
 
